@@ -1,5 +1,5 @@
 Ali,1995
 Samet,2002
 Mehmet,1987
-Sude,2056
+Semih,2056
 Arda,2044
