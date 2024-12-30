@@ -1,39 +1,50 @@
-# This is a basic workflow to help you get started with Actions
+name: Python CI
 
-name: CI
-
-# Controls when the workflow will run
+# Workflow'u tetikleyen olaylar
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "test" ]
+    branches:
+      - main  # Yalnızca main branşındaki değişikliklerle çalışacak
   pull_request:
-    branches: [ "test" ]
+    branches:
+      - main  # Pull request'lerde de main branşı üzerinde çalışacak
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+# Workflow içinde çalışacak job'lar
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # GitHub Actions'ın çalışacağı ortam (Ubuntu)
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
+      # 1. Reposunu checkout et
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      # 2. Python'ı kur
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'  # Python sürümünü belirt
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      # 3. Gerekli bağımlılıkları yükle
+      - name: Install dependencies
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-      - name: Show results
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt  # Eğer requirements.txt varsa
+
+      # 4. Python dosyasını çalıştır
+      - name: Run Python script
         run: |
-          cat cikti.txt
+          python main.py  # main.py dosyasını çalıştır
+
+      # 5. Çıktıyı göster (cikti.txt dosyasını oku)
+      - name: Show output from cikti.txt
+        run: |
+          cat cikti.txt  # cikti.txt dosyasının içeriğini göster
+          
+      # 6. Çıktıyı GitHub'a commit et (isteğe bağlı, eğer cikti.txt dosyasını kaydetmek isterseniz)
+      - name: Commit and push cikti.txt
+        run: |
+          git add cikti.txt
+          git commit -m "Update cikti.txt with new results"
+          git push
+        if: success()  # Eğer önceki adımlar başarılı olduysa
