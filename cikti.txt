@@ -2,3 +2,4 @@ Ali su an 29 yasinda.
 Samet su an 22 yasinda.
 Mehmet su an 37 yasinda.
 Sude icin gecersiz dogum yili: 2056. Yas hesaplanamadi.
+Arda icin gecersiz dogum yili: 2063. Yas hesaplanamadi.
