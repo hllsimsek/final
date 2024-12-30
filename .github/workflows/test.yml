@@ -33,10 +33,7 @@ jobs:
         run: |
           cat cikti.txt  # cikti.txt dosyasının içeriğini göster
           
-      # 5. Çıktıyı GitHub'a commit et (isteğe bağlı, eğer cikti.txt dosyasını kaydetmek isterseniz)
-      - name: Commit and push cikti.txt
-        run: |
-          git add cikti.txt
+     
           git commit -m "Update cikti.txt with new results"
           git push
         if: success()  # Eğer önceki adımlar başarılı olduysa
