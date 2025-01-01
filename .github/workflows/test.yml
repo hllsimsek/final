@@ -32,5 +32,15 @@ jobs:
       - name: Show output from cikti.txt
         run: |
           cat cikti.txt  # cikti.txt dosyasının içeriğini göster
+
+      - name: Check for invalid scores
+        run: |
+          if grep -q "Invalid Score" sonuclar.txt; then
+          echo "Error: Invalid Score found in sonuclar.txt"
+          exit 1
+          fi
+      - name: Display results
+        if: success()
+        run: cat sonuclar.txt
  
   
