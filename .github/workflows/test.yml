@@ -35,12 +35,12 @@ jobs:
 
       - name: Check for invalid scores
         run: |
-          if grep -q "Invalid Score" sonuclar.txt; then
-          echo "Error: Invalid Score found in sonuclar.txt"
+          if grep -q "Invalid Score" cikti.txt; then
+          echo "Error: Invalid Score found in cikti.txt"
           exit 1
           fi
       - name: Display results
         if: success()
-        run: cat sonuclar.txt
+        run: cat cikti.txt
  
   
