@@ -35,8 +35,8 @@ jobs:
 
       - name: Check for invalid scores
         run: |
-          if grep -q "Invalid Score" cikti.txt; then
-          echo "Error: Invalid Score found in cikti.txt"
+          if grep -q "gecersiz" cikti.txt; then
+          echo "Error: Gecersiz değer girildi cikti.txt"
           exit 1
           fi
       - name: Display results
