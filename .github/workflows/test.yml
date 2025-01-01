@@ -27,11 +27,16 @@ jobs:
       - name: Run Python script
         run: |
           python main.py 
-
       # 4. Çıktıyı göster (cikti.txt dosyasını oku)
       - name: Show output from cikti.txt
         run: |
-          cat cikti.txt  
-
- 
-  
+          cat cikti.txt  # cikti.txt dosyasının içeriğini göster
+      - name: Check for invalid scores
+        run: |
+          if grep -q "gecersiz" cikti.txt; then
+          echo "Error: Gecersiz değer girildi cikti.txt"
+          exit 1
+          fi
+      - name: Display results
+        if: success()
+        run: cat cikti.txt
