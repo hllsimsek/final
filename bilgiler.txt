@@ -1,4 +1,2 @@
 Ali,1995
 Samet,2002
-Semih,2056
-Arda,2090
